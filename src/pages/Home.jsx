@@ -2,13 +2,13 @@ import React from "react"
 import "../sass/styles.sass"
 import logo3 from "../images/logo3.png"
 import { BallTriangle } from "react-loader-spinner"
-import { useFetch } from "../hooks/useFetch"
+import { characterListPagination} from "../hooks/useFetch"
 import ShowCharacters from "../components/ShowCharacters"
 
 
 function home(){
 
-    const { data, loading, error } = useFetch(
+    const { data, loading, error } = characterListPagination(
         "https://rickandmortyapi.com/api/character/[1,2,244]"
     )
     if (loading) {

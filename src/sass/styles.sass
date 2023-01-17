@@ -51,14 +51,31 @@ header
 .iconsHeader
   display: flex
   color: white
-  justify-content: space-between
-  width: 80px
+  justify-content: space-around
+  width: 10%
   font-size: 25px
   a
     color: white
     transition: color 350ms ease
   a:hover
     color: greenyellow
+    transition: color 350ms ease
+  label:hover
+    color: greenyellow
+    transition: color 350ms ease
+
+.iconsHeader2
+  display: flex
+  color: white
+  justify-content: space-around
+  margin: 10px
+  width: 100%
+  font-size: 25px
+  button
+    background-color: white
+    transition: color 350ms ease
+  button:hover
+    background-color: greenyellow
     transition: color 350ms ease
   label:hover
     color: greenyellow
@@ -128,6 +145,7 @@ footer
 .section-init
   display: flex
   flex-direction: row
+  flex-wrap: wrap
   min-height: 40vh
   width: 100%
   justify-content: space-around
@@ -135,6 +153,7 @@ footer
   align-items: center
   border-radius: 20px
   justify-content: space-around
+  margin: 10px
   width: 30%
   display: flex
   height: 30vh
@@ -216,14 +235,15 @@ footer
   flex-wrap: wrap
 .section-caps
   display: flex
-  min-height: 30vh
+  min-height: 80vh
   width: 100%
   flex-wrap: wrap
 .temps
   display: flex
   align-items: center
   justify-content: space-around
-  width: 33%
+  border-radius: 20px
+  width: 26%
   margin: auto
   background-color: #70707080
 .temporada
@@ -235,6 +255,55 @@ footer
   font-size: 18px
   font-family: mina
   color: white
+
+//Filtrado
+ul
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  margin-top: 15px
+  margin-bot: 15px
+  li
+    width: 20%
+    display: flex
+    justify-content: center
+    button
+      width: 25%
+      height: 6vh
+      border-radius: 10px
+      background-color: #707070
+    button:hover
+      background-color: greenyellow
+.filtrado
+  width: 50%
+  display: flex
+  justify-content: center
+  background-color: #70707080
+  border-radius: 20px 
+.Filtros
+  width: 80%
+  display: flex
+  justify-content: center
+  flex-direction: row
+  flex-wrap: wrap
+  input
+    width: 100%
+    border-radius: 10px
+    height: 2.5vh
+    font-family: mina
+    margin-top: 5px
+  select
+    border-radius: 10px
+    width: 32%
+    height: 2.5vh
+    margin: 5px
+    font-family: mina
+  button
+    width: 30%
+    margin: 10px
+    border-radius: 5px
+    font-family: mina
 
 //Personajes ++
 .main-charExt
@@ -345,6 +414,28 @@ textarea
   color: white
   background-color: #707070
   border-radius: 10px
+.checkbox
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row
+  color: white
+  font-family: mina
+  input
+    width: 20%
+  p
+    width: 80%
+
+//UserPage
+.userPage
+  display: flex
+  justify-content: center
+  height: 80vh
+.texto
+  font-family: mina
+  font-size: 25px
+  color: white
+  text-align: center
 
 //ERROR 404
 .Error
