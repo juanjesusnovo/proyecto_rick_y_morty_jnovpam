@@ -55,7 +55,7 @@ const ShowCharacters = ({characters = []}) => {
                                 <p>First Appearence - {getEpisode(character.episode[0])}</p>
                             </div>
                         </div>
-                        <h2 onClick={setFavourites} id={character.id}>x</h2>
+                        <h2 onClick={setFavourites} id={character.id}>♡</h2>
                     </article>
                 ))
             }
