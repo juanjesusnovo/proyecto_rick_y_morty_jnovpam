@@ -4,9 +4,7 @@ import { characterListPagination} from "../hooks/useFetch"
 
 const ShowCharacters = ({characters = []}) => {
 
-    const {favs, setFavs} = useUserContext()
-
-    
+    const {user, favs, setFavs} = useUserContext()
 
 
     function getEpisode(episode){
@@ -22,18 +20,19 @@ const ShowCharacters = ({characters = []}) => {
     }
     
     const setFavourites = (e) => {
-        const isFavourite = favs.includes(e.target.id)
-        console.log(favs);
-        const fav = isFavourite ? (
-            favs.filter(favchar => favchar !== e.target.id)
+        let fav = parseInt(e.target.id)
+        const isFavourite = favs.includes(fav)
+        isFavourite ? (
+            setFavs(favs.filter(favchar => favchar !== fav))
         ) : (
-            favs.push(e.target.id)
+            setFavs([
+                ...favs,
+                fav
+            ])
         )
-        setFavs({
-            ...favs,
-            fav
-        })
-        localStorage.setItem("jose", favs)
+        console.log(favs)
+        console.log(favs.includes(1))
+        localStorage.setItem(user, favs)
     }
 
     return (
@@ -55,7 +54,15 @@ const ShowCharacters = ({characters = []}) => {
                                 <p>First Appearence - {getEpisode(character.episode[0])}</p>
                             </div>
                         </div>
-                        <h2 onClick={setFavourites} id={character.id}>♡</h2>
+                        {
+                            user ? (favs.includes(parseInt(character.id)) ? (
+                                <h2 onClick={setFavourites} id={character.id}>💚</h2>
+                            ) :
+                            (
+                                <h2 onClick={setFavourites} id={character.id}>🤍</h2>
+                            )):
+                            <p></p>
+                        }
                     </article>
                 ))
             }

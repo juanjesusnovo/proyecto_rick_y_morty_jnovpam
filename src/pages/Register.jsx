@@ -1,15 +1,18 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 import { useUserContext } from '../context/UserContext'
 import logo3 from "../images/logo3.png"
 
 export default function Register() {
 
     const {loged, setLoged} = useUserContext()
+    const navigate = useNavigate()
 
     const createUser = (e) => {
         e.preventDefault()
         if(!localStorage.hasOwnProperty(e.target.usuario.value)){
             localStorage.setItem(e.target.usuario.value, e.target.password.value)
+            navigate("/login")
         }
     }
 

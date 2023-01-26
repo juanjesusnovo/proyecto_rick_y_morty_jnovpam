@@ -8,13 +8,15 @@ import { useUserContext } from "../context/UserContext"
 
 export default function Login() {
 
-    const { user, setUser } = useUserContext()
+    const { user, setUser, loged, setLoged, favs, setFavs } = useUserContext()
     const navigate = useNavigate()
 
     const loginUser = (e) => {
         e.preventDefault()
         if(localStorage.getItem(e.target.user.value) === e.target.password.value){
             setUser(true)
+            setFavs([])
+            setLoged(true)
             navigate("/")
         }
         else{

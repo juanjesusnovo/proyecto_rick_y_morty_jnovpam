@@ -6,14 +6,14 @@ export const UserContext = createContext()
 const UserProvider = ({children}) => {
 
 
-  const data = []
+  const [user, setUser] = useState(false)
+  
+  const [loged, setLoged] = useState(false)
 
-  const [user, setUser] = useState()
-  const [favs, setFavs] = useState(data)
-
+  const [favs, setFavs] = useState(false)
 
   return (
-    <UserContext.Provider value={{user, setUser, favs, setFavs}}>
+    <UserContext.Provider value={{user, setUser, favs, setFavs, loged, setLoged}}>
       {children}
     </UserContext.Provider>
   )

@@ -9,11 +9,13 @@ import { useUserContext } from "../context/UserContext"
 
 function header(){
 
-    const { user, setUser } = useUserContext()
+    const { user, setUser, favs, setFavs, loged, setLoged } = useUserContext()
     const navigate = useNavigate()
 
     const cerrarSesion = () => {
+        setLoged(false)
         setUser(null)
+        setFavs(false)
         navigate("/")
     }
 
@@ -38,7 +40,7 @@ function header(){
                     </ul>
                 </label>
                 {
-                    user ? (
+                    loged ? (
                         <div className="iconsHeader2">
                             <li><NavLink to="/userPage"><FaUserAlt/></NavLink></li>
                             <button onClick={cerrarSesion}>Cerrar Sesion</button>
