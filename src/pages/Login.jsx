@@ -13,16 +13,23 @@ export default function Login() {
 
     const loginUser = (e) => {
         e.preventDefault()
-        if(localStorage.getItem(e.target.user.value) === e.target.password.value){
-            setUser(true)
-            setFavs([])
+        /* if(localStorage.getItem(e.target.user.value) === e.target.password.value){
+            setUser(e.target.user.value)
+            setFavs(JSON.parse(localStorage.getItem(user + "_favs")))
+            setLoged(true)
+            navigate("/")
+        } */
+        if(localStorage.hasOwnProperty(e.target.user.value+"favs")){
+            setUser(e.target.user.value)
+            setFavs(localStorage.getItem(e.target.user.value+"favs").split(","))
             setLoged(true)
             navigate("/")
         }
         else{
-            return (
-                    console.log("mal")
-            )
+            setUser(e.target.user.value)
+            setFavs([])
+            setLoged(true)
+            navigate("/")
         }
     }
 

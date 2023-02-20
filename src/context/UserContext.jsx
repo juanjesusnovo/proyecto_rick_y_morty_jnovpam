@@ -10,7 +10,7 @@ const UserProvider = ({children}) => {
   
   const [loged, setLoged] = useState(false)
 
-  const [favs, setFavs] = useState(false)
+  const [favs, setFavs] = useState(null)
 
   return (
     <UserContext.Provider value={{user, setUser, favs, setFavs, loged, setLoged}}>

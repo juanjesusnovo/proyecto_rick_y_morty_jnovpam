@@ -12,6 +12,7 @@ export default function Register() {
         e.preventDefault()
         if(!localStorage.hasOwnProperty(e.target.usuario.value)){
             localStorage.setItem(e.target.usuario.value, e.target.password.value)
+            localStorage.setItem(e.target.usuario.value+"favs", [])
             navigate("/login")
         }
     }

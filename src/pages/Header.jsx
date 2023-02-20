@@ -14,8 +14,8 @@ function header(){
 
     const cerrarSesion = () => {
         setLoged(false)
-        setUser(null)
-        setFavs(false)
+        localStorage.setItem(user+"favs", favs)
+        setFavs(null)
         navigate("/")
     }
 
@@ -41,10 +41,12 @@ function header(){
                 </label>
                 {
                     loged ? (
-                        <div className="iconsHeader2">
-                            <li><NavLink to="/userPage"><FaUserAlt/></NavLink></li>
-                            <button onClick={cerrarSesion}>Cerrar Sesion</button>
-                        </div>
+                        <nav className="navLoged">
+                            <ul className="buttonsHeader">
+                                <li><NavLink to="/myFavs">Favoritos</NavLink></li>
+                                <button onClick={cerrarSesion}>Cerrar Sesion</button>
+                            </ul>
+                        </nav>
                     ) : (
                         <li><NavLink to="/login"><FaUserAlt/></NavLink></li>
                     )

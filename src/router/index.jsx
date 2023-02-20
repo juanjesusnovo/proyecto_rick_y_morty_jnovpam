@@ -7,7 +7,7 @@ import Seasons from "../pages/Seasons"
 import Contact from "../pages/Contact"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
-import UserPage from "../pages/UserPage"
+import MyFavs from "../pages/MyFavs"
 
 export const router = createBrowserRouter(
     [
@@ -41,8 +41,8 @@ export const router = createBrowserRouter(
                     element:<Register />
                 },
                 {
-                    path:"/userPage",
-                    element: <UserPage />
+                    path:"/myFavs",
+                    element: <MyFavs />
                 }
             ]
         }

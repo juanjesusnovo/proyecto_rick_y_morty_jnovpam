@@ -1,11 +1,11 @@
 import React, { useContext } from "react"
+import { ClimbingBoxLoader } from "react-spinners"
 import { useUserContext } from "../context/UserContext"
 import { characterListPagination} from "../hooks/useFetch"
 
 const ShowCharacters = ({characters = []}) => {
 
-    const {user, favs, setFavs} = useUserContext()
-
+    const {user, setUser, favs, setFavs, loged, setLoged} = useUserContext()
 
     function getEpisode(episode){
         const {data, loading, error} = characterListPagination(episode)
@@ -20,19 +20,31 @@ const ShowCharacters = ({characters = []}) => {
     }
     
     const setFavourites = (e) => {
-        let fav = parseInt(e.target.id)
-        const isFavourite = favs.includes(fav)
-        isFavourite ? (
-            setFavs(favs.filter(favchar => favchar !== fav))
-        ) : (
-            setFavs([
-                ...favs,
-                fav
-            ])
-        )
+        let fav = e.target.id
+        if(favs[0]=== ""){
+            favs[0]=fav
+        }
+        else{
+            const isFavourite = favs.includes(fav)
+            isFavourite ? (
+                setFavs(favs.filter(favchar => favchar !== fav))
+            ) : (
+                setFavs([
+                    ...favs,
+                    fav
+                ])
+            )
+        }
         console.log(favs)
-        console.log(favs.includes(1))
-        localStorage.setItem(user, favs)
+        
+    }
+    const removeStorage = () => {
+        /* localStorage.clear()
+        setFavs(null)
+        setUser(null)
+        setLoged(false) */
+        console.log(loged)
+        console.log(favs)
     }
 
     return (
@@ -55,14 +67,15 @@ const ShowCharacters = ({characters = []}) => {
                             </div>
                         </div>
                         {
-                            user ? (favs.includes(parseInt(character.id)) ? (
+                            loged ? (favs.includes((character.id).toString()) ? (
                                 <h2 onClick={setFavourites} id={character.id}>💚</h2>
                             ) :
                             (
                                 <h2 onClick={setFavourites} id={character.id}>🤍</h2>
                             )):
-                            <p></p>
+                            (<p></p>)
                         }
+                        <button onClick={removeStorage}>Clear</button>
                     </article>
                 ))
             }
