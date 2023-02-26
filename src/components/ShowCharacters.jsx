@@ -38,14 +38,6 @@ const ShowCharacters = ({characters = []}) => {
         console.log(favs)
         
     }
-    const removeStorage = () => {
-        /* localStorage.clear()
-        setFavs(null)
-        setUser(null)
-        setLoged(false) */
-        console.log(loged)
-        console.log(favs)
-    }
 
     return (
         <section className="section-init">
@@ -75,7 +67,6 @@ const ShowCharacters = ({characters = []}) => {
                             )):
                             (<p></p>)
                         }
-                        <button onClick={removeStorage}>Clear</button>
                     </article>
                 ))
             }

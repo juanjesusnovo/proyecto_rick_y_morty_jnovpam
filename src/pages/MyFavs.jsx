@@ -12,6 +12,7 @@ import NotFound from './NotFound'
 export default function myFavs() {
 
     const {user, setUser, favs, setFavs, loged, setLoged} = useUserContext()
+    const navigate = useNavigate()
 
     let link = ""
 
@@ -34,7 +35,7 @@ export default function myFavs() {
     }
     if (error) {
         return(
-            <NotFound />
+            navigate("/")
         )
     }
     const showData = () => {
