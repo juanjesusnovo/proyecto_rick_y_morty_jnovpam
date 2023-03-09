@@ -1,41 +1,18 @@
 import React, { useContext } from "react"
-import { ClimbingBoxLoader } from "react-spinners"
-import { useUserContext } from "../context/UserContext"
 import { characterListPagination} from "../hooks/useFetch"
 
-const ShowCharacters = ({characters = []}) => {
-
-    const {user, setUser, favs, setFavs, loged, setLoged} = useUserContext()
+const LikedCharacters = ({characters = []}) => {
 
     function getEpisode(episode){
         const {data, loading, error} = characterListPagination(episode)
 
-        if (loading){
-            return "loading"
+        if (loading) {
+            return <h1>Loading</h1>
         }
         if (error){
             console.log(error)
         }
         return data.name
-    }
-    
-    const setFavourites = (e) => {
-        let fav = e.target.id
-        if(favs[0]=== ""){
-            favs[0]=fav
-        }
-        else{
-            const isFavourite = favs.includes(fav)
-            isFavourite ? (
-                setFavs(favs.filter(favchar => favchar !== fav))
-            ) : (
-                setFavs([
-                    ...favs,
-                    fav
-                ])
-            )
-        }
-        console.log(favs)
     }
 
     return (
@@ -57,19 +34,11 @@ const ShowCharacters = ({characters = []}) => {
                                 <p>First Appearence - {getEpisode(character.episode[0])}</p>
                             </div>
                         </div>
-                        {
-                            loged ? (favs.includes((character.id).toString()) ? (
-                                <h2 onClick={setFavourites} id={character.id}>💚</h2>
-                            ) :
-                            (
-                                <h2 onClick={setFavourites} id={character.id}>🤍</h2>
-                            )):
-                            (<p></p>)
-                        }
                     </article>
                 ))
             }
         </section>
     )
 }
-export default ShowCharacters
+
+export default LikedCharacters

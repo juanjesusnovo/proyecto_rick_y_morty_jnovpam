@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "../sass/styles.sass"
 import { BallTriangle } from "react-loader-spinner"
 import { NavLink, useNavigate } from 'react-router-dom'
 import { characterListPagination} from "../hooks/useFetch"
-import ShowCharacters from "../components/ShowCharacters"
 import { useUserContext } from "../context/UserContext"
+import LikedCharacters from '../components/LikedCharacters'
 
-import NotFound from './NotFound'
 
 
 export default function myFavs() {
@@ -14,12 +13,7 @@ export default function myFavs() {
     const {user, setUser, favs, setFavs, loged, setLoged} = useUserContext()
     const navigate = useNavigate()
 
-    let link = ""
-
-    if(favs.length = 1){ link = `https://rickandmortyapi.com/api/character/${favs[0]}` }
-    else{ link = `https://rickandmortyapi.com/api/character/${favs}` }
-
-    const { data, loading, error } = characterListPagination(link)
+    const { data, loading, error } = characterListPagination(`https://rickandmortyapi.com/api/character/${favs}`)
 
     if (loading) {
         return (<BallTriangle
@@ -38,15 +32,10 @@ export default function myFavs() {
             navigate("/")
         )
     }
-    const showData = () => {
-        console.log(data)
-        console.log(favs)
-    }
         
     return(
-        <main className="main-inix">
-            <button onClick={showData}>data</button>
-            <ShowCharacters characters={data.results}></ShowCharacters>
+        <main className="main-inix">+
+            <LikedCharacters characters={data}></LikedCharacters>
         </main>
     )
 }
