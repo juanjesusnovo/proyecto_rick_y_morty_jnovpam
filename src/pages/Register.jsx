@@ -18,37 +18,37 @@ export default function Register() {
     const [email, setEmail] = useState("")
     const [date, setDate] = useState("")
 
-    const [validUser, setValidUser] = useState(true)
-    const [validPass, setValidPass] = useState(true)
-    const [validEmail, setValidEmail] = useState(true)
-    const [validDate, setValidDate] = useState(true)
+    const [validUser, setValidUser] = useState(false)
+    const [validPass, setValidPass] = useState(false)
+    const [validEmail, setValidEmail] = useState(false)
+    const [validDate, setValidDate] = useState(false)
 
     const navigate = useNavigate()
 
-    const testUser = () =>{
+    useEffect(() =>{
         const result1 = userGood.test(user)
         console.log(result1);
         setValidUser(result1)
-    }
+    },[user])
 
-    const testPass = () =>{
+    useEffect(() =>{
         let result2 = passwordGood.test(pass)
         if(pass != rpass){ result2 = false}
         console.log(result2);
         setValidPass(result2)
-    }
+    },[pass])
 
-    const testEmail =() =>{
+    useEffect(() =>{
         const result3 = emailGood.test(email)
         console.log(result3);
         setValidEmail(result3)
-    }
+    },[email])
 
-    const testDate = () =>{
+    useEffect(() =>{
         const result4 = dateGood.test(date)
         console.log(result4);
         setValidDate(result4)
-    }
+    },[date])
     
 
     const createUser = (e) => {
@@ -58,10 +58,6 @@ export default function Register() {
         setRpass(e.target.Rpassword.value)
         setEmail(e.target.correo.value)
         setDate(e.target.age.value)
-        testUser()
-        testPass()
-        testEmail()
-        testDate()
         if(!localStorage.hasOwnProperty(e.target.usuario.value)){
             if(validUser && validPass && validEmail && validDate){
                 localStorage.setItem(e.target.usuario.value, e.target.password.value)
