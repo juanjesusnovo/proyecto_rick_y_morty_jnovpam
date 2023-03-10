@@ -1,24 +1,31 @@
 import React, { useContext } from "react"
-import { characterListPagination} from "../hooks/useFetch"
+import { ClimbingBoxLoader } from "react-spinners"
 import { useUserContext } from "../context/UserContext"
+import { characterListPagination} from "../hooks/useFetch"
+import portal1 from "../images/portal1.png"
 
-
-const LikedCharacters = ({characters = []}) => {
+const CharacterLiked = ({character = {}}) => {
 
     const {user, setUser, favs, setFavs, loged, setLoged} = useUserContext()
+
+    if(character.hasOwnProperty("info")){
+        return (
+            <img className="portal" src={portal1} alt="portal"/>    
+        )
+    }
 
     function getEpisode(episode){
         const {data, loading, error} = characterListPagination(episode)
 
-        if (loading) {
-            return <h1>Loading</h1>
+        if (loading){
+            return "loading"
         }
         if (error){
             console.log(error)
         }
         return data.name
     }
-
+    
     const setFavourites = (e) => {
         let fav = e.target.id
         if(favs[0]=== ""){
@@ -35,15 +42,12 @@ const LikedCharacters = ({characters = []}) => {
                 ])
             )
         }
-        location.reload()
         console.log(favs)
     }
 
     return (
-        <section className="section-init">
-            {   
-                characters.map((character, index) => (
-                    <article key={index} id={character.id} className="charactersInit">
+        <section className="liked">          
+                    <article id={character.id} className="likedCharacters">
                         <figure className="figure-init">
                             <img className="character" src={character.image} alt={character.name}/>
                         </figure>
@@ -59,18 +63,16 @@ const LikedCharacters = ({characters = []}) => {
                             </div>
                         </div>
                         {
-                            favs.includes((character.id).toString()) ? (
+                            loged ? (favs.includes((character.id).toString()) ? (
                                 <h2 onClick={setFavourites} id={character.id}>💚</h2>
                             ) :
                             (
                                 <h2 onClick={setFavourites} id={character.id}>🤍</h2>
-                            )
+                            )):
+                            (<p></p>)
                         }
                     </article>
-                ))
-            }
         </section>
     )
 }
-
-export default LikedCharacters
+export default CharacterLiked

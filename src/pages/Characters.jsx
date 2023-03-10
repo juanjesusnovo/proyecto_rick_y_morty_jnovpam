@@ -23,6 +23,13 @@ export default function Characters() {
             visible={true}
         />)
     }
+
+    window.onload = () => {
+        setTimeout(()=>{
+            alert("Recuerda que si te registras en la página puedes añadir personajes a tu sección de favoritos!")
+        }, 3000)
+    }
+
     if (error) {
         return (
             <div className='error-char'>

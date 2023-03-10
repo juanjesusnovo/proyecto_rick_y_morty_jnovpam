@@ -45,8 +45,8 @@ export default function Login() {
                 <label htmlFor="contraseña">
                     <input className="sesion" type="password" id="password" name="contraseña" placeholder="password" required />
                 </label>
-                <button type='submit'>Login</button>
-                <NavLink to="/register">No tienes cuenta? Registrate!</NavLink>
+                <button type='submit' className='botonLogin'>Login</button>
+                <NavLink to="/register">No tienes cuenta? Registrate!</NavLink>    
             </form>
         </div>
     )

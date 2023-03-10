@@ -44,7 +44,7 @@ function header(){
                         <nav className="navLoged">
                             <ul className="buttonsHeader">
                                 <li><NavLink to="/myFavs">Favoritos</NavLink></li>
-                                <button onClick={cerrarSesion}>Cerrar Sesion</button>
+                                <li onClick={cerrarSesion}>Logout</li>
                             </ul>
                         </nav>
                     ) : (
